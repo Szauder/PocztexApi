@@ -1,6 +1,6 @@
 namespace PocztexApi.Core.Exceptions;
 
-public class AppException(string? responseMessage) : Exception
+public class AppException(string? responseMessage = null) : Exception
 {
     public string? ResponseMessage { get; init; } = responseMessage;
 

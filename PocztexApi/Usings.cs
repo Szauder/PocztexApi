@@ -1,2 +1,10 @@
 ﻿global using PocztexApi.Core.Exceptions;
 global using PocztexApi.Shared.Middlewares;
+global using PocztexApi.Auth.PasswordHashing.Core;
+global using PocztexApi.Auth.PasswordHashing.Core.Types;
+global using PocztexApi.Accounts.Core.Repos;
+global using PocztexApi.Accounts.Repos;
+global using PocztexApi.Auth.Authenticate;
+global using PocztexApi.Auth.PasswordHashing.Sha;
+global using PocztexApi.Core.Types;
+global using PocztexApi.Shared.Time;
