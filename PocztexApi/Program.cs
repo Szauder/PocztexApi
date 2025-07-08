@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Authentication.BearerToken;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using PocztexApi.Accounts.Seed;
+using PocztexApi.Core.Seeding;
+using PocztexApi.Shared.Seeding;
 using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -78,6 +81,10 @@ builder.Services.AddScoped<AccountsService>();
 builder.Services.AddScoped<AuthService>();
 
 builder.Services.AddSingleton(authTokenConfig);
+
+builder.Services.AddHostedService<SeederBackgroundProces>();
+builder.Services.AddSingleton<ISeeder, AccountsSeeder>();
+builder.Services.AddSingleton<SeedReader>();
 
 var app = builder.Build();
 

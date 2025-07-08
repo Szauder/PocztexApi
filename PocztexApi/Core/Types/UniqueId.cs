@@ -7,4 +7,6 @@ public record UniqueId(Guid Guid)
     public static implicit operator UniqueId(Guid guid) => new(guid);
 
     public static UniqueId CreateNew() => new(Guid.NewGuid());
+
+    public static UniqueId Parse(string str) => Guid.Parse(str);
 }

@@ -1,8 +1,4 @@
 using Microsoft.IdentityModel.Tokens;
-using PocztexApi.Accounts.Core.Models;
-using PocztexApi.Accounts.Core.Repos;
-using PocztexApi.Auth.Authenticate.Core.Types;
-using PocztexApi.Core.Types;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
@@ -12,9 +8,9 @@ public class AuthService(IAccountsRepository accountsRepository, IPasswordHasher
 {
     static readonly JwtSecurityTokenHandler tokenHandler = new();
 
-    public async Task<AuthToken> Authenticate(Name name, Password password)
+    public async Task<AuthToken> Authenticate(Login login, Password password)
     {
-        var account = await accountsRepository.GetByName(name) ??
+        var account = await accountsRepository.GetByLogin(login) ??
             throw new AppException(responseMessage: "Bad name or password");
 
         var a = account.PasswordHash.Bytes;

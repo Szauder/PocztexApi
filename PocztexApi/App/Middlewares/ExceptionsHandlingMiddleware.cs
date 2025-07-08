@@ -1,5 +1,3 @@
-namespace PocztexApi.Shared.Middlewares;
-
 public sealed class ExceptionsHandlingMiddleware(IWebHostEnvironment environment, ILogger<ExceptionsHandlingMiddleware> logger) : IMiddleware
 {
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)

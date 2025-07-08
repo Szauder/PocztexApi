@@ -1,14 +1,13 @@
-using PocztexApi.Accounts.Core.Models;
-using PocztexApi.Accounts.Core.Repos;
-using PocztexApi.Core.Types;
-
 public class AccountsService(IAccountsRepository repository, IPasswordHasher passwordHasher)
 {
-    public async Task<Account> RegisterAccount(Name name, Password password)
+    public async Task<Account> RegisterAccount(Login login, Password password)
     {
+        if (await repository.GetByLogin(login) is not null)
+            throw new AppException("Account with this same login already exist");
+
         return await repository.CreateAndReturn(new(
             UniqueId: UniqueId.CreateNew(),
-            Name: name,
+            Login: login,
             PasswordHash: passwordHasher.Hash(password)
         ));
     }

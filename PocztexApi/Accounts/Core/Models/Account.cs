@@ -1,10 +1,10 @@
+using PocztexApi.Accounts.Core.Types;
 using PocztexApi.Core.Models;
-using PocztexApi.Core.Types;
 
 namespace PocztexApi.Accounts.Core.Models;
 
 public record Account(
     UniqueId UniqueId,
-    Name Name,
+    Login Login,
     PasswordHash PasswordHash
 ) : IModel;

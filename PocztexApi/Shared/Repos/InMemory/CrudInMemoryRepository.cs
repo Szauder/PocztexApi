@@ -1,12 +1,13 @@
 using PocztexApi.Core.Models;
 using PocztexApi.Core.Repositories;
-using PocztexApi.Core.Types;
 
 namespace PocztexApi.Shared.Repositories.InMemory;
 
 public class CrudInMemoryRepository<TModel> : IRepository<TModel> where TModel : IModel
 {
     protected List<TModel> Models { get; init; } = [];
+
+    public Task<bool> IsEmpty() => Task.FromResult(Models.Count == 0);
 
     public Task<TModel?> GetByUniqueId(UniqueId id) => Task.FromResult(Models.FirstOrDefault(m => m.UniqueId == id));
 

@@ -1,10 +1,11 @@
 using PocztexApi.Core.Models;
-using PocztexApi.Core.Types;
 
 namespace PocztexApi.Core.Repositories;
 
 public interface IRepository<T> where T : IModel
 {
+    Task<bool> IsEmpty();
+
     Task<T?> GetByUniqueId(UniqueId id);
 
     Task Create(T model);
