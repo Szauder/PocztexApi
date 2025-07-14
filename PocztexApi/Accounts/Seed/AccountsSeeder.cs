@@ -10,12 +10,14 @@ public class AccountsSeeder(SeedReader reader, IAccountsRepository accountsRepos
             await accountsRepository.Create(dto.ToAccount(passwordHasher));
     }
 
-    record AccountSeedDto(string UniqueId, string Login, string Password)
+    record AccountSeedDto(string UniqueId, bool Locked, string Login, string Password)
     {
         public Account ToAccount(IPasswordHasher passwordHasher) => new(
             UniqueId: SeederHelper.GetUniqueId(UniqueId),
+            Locked: Locked,
             Login: Login,
-            PasswordHash: passwordHasher.Hash(Password)
+            PasswordHash: passwordHasher.Hash(Password),
+            new RolesSet(false, false, false)
         );
     }
 }

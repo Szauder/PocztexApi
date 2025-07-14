@@ -1,5 +1,4 @@
 using PocztexApi.Core.Models;
-using PocztexApi.Core.Repositories;
 
 namespace PocztexApi.Shared.Repositories.InMemory;
 
@@ -32,4 +31,6 @@ public class CrudInMemoryRepository<TModel> : IRepository<TModel> where TModel :
 
         return Task.CompletedTask;
     }
+
+    public Task<List<TModel>> GetAll() => Task.FromResult(new List<TModel>(Models));
 }

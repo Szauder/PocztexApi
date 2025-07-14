@@ -6,6 +6,7 @@ public interface IRepository<T> where T : IModel
 {
     Task<bool> IsEmpty();
 
+    Task<List<T>> GetAll();
     Task<T?> GetByUniqueId(UniqueId id);
 
     Task Create(T model);

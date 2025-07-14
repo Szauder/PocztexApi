@@ -7,8 +7,10 @@ public class AccountsService(IAccountsRepository repository, IPasswordHasher pas
 
         return await repository.CreateAndReturn(new(
             UniqueId: UniqueId.CreateNew(),
+            Locked: false,
             Login: login,
-            PasswordHash: passwordHasher.Hash(password)
+            PasswordHash: passwordHasher.Hash(password),
+            new RolesSet(false, false, false)
         ));
     }
 }
